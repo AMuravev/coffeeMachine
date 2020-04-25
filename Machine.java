@@ -1,7 +1,5 @@
 package machine;
 
-import static machine.Command.*;
-
 public class Machine {
 
     public Machine() {
@@ -72,17 +70,15 @@ public class Machine {
 
     }
 
-    private boolean buy() {
+    private void buy() {
 
         System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:");
 
         setCurrentState(State.PURCHASE);
 
-        return true;
-
     }
 
-    private boolean purchase(Command command) {
+    private void purchase(Command command) {
 
         switch (command) {
             case ESPRESSO:
@@ -105,18 +101,16 @@ public class Machine {
         setCurrentState(State.START);
         welcome();
 
-        return true;
     }
 
-    private boolean fill() {
+    private void fill() {
 
         System.out.println("Write how many ml of water do you want to add:");
         setCurrentState(State.FILLING_WATER);
 
-        return true;
     }
 
-    private boolean fillProcess(String count) {
+    private void fillProcess(String count) {
 
         int countInt = Integer.parseInt(count);
 
@@ -146,20 +140,17 @@ public class Machine {
                 break;
         }
 
-        return true;
-
     }
 
-    private boolean take() {
+    private void take() {
 
         System.out.println("I gave you $" + getMoney());
         setMoney(0);
         welcome();
 
-        return true;
     }
 
-    private boolean remaining() {
+    private void remaining() {
         System.out.println("\nThe coffee machine has:");
         System.out.println(getWatter() + " of water");
         System.out.println(getMilk() + " of milk");
@@ -168,31 +159,21 @@ public class Machine {
         System.out.println(getMoney() + " of money");
         welcome();
 
-        return true;
     }
 
-    private boolean welcome() {
-
+    private void welcome() {
         System.out.println("\nWrite action (buy, fill, take, remaining, exit): ");
-
-        return true;
     }
 
-    private boolean exit() {
-
+    private void exit() {
         setCurrentState(State.EXIT);
-
-        return true;
     }
 
-    private boolean error() {
-
+    private void error() {
         System.out.println("Command not found!");
-
-        return true;
     }
 
-    private boolean updateSupply(Coffee coffee) {
+    private void updateSupply(Coffee coffee) {
 
         int limit = Math.min(Math.min(getWatter() - coffee.getWater(), getMilk() - coffee.getMilk()), getBeans() - coffee.getBeans());
 
@@ -208,7 +189,6 @@ public class Machine {
             System.out.println("I have enough resources, making you a coffee!");
         }
 
-        return true;
     }
 
     public State getCurrentState() {
